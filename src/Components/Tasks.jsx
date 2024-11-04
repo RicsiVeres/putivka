@@ -1,14 +1,14 @@
 import React from 'react';
-import { useTickets } from './TicketsContext';
-import './task.css'
-export default function Tasks() {
-  const { tickets } = useTickets();
+import { useSelector } from 'react-redux';
 
-  return (
-        (tickets.length > 0) ? (
+export default function Tasks() {
+    const tickets = useSelector((state) => state.tickets.items);
+
+    return (
+        tickets.length > 0 ? (
             <table>
                 <thead>
-                    <tr>
+                <tr>
                     <th>Id</th>
                     <th>Date</th>
                     <th>Distance</th>
@@ -16,27 +16,24 @@ export default function Tasks() {
                     <th>Final Location</th>
                     <th>Name</th>
                     <th>Price</th>
-                    </tr>
+                </tr>
                 </thead>
                 <tbody>
-                    {tickets.map((ticket) => (
+                {tickets.map((ticket, index) => (
                     <tr key={ticket.id}>
-                        <td>{tickets.indexOf(ticket)+1}</td>
+                        <td>{index + 1}</td>
                         <td>{ticket.date}</td>
                         <td>{ticket.distance} km</td>
-                        <td>{ticket.duration} (min)</td>
+                        <td>{ticket.duration} min</td>
                         <td>{ticket.finalLocation}</td>
                         <td>{ticket.name}</td>
-                        <td>{ticket.price} uah</td>
+                        <td>{ticket.price} UAH</td>
                     </tr>
-                    ))}
+                ))}
                 </tbody>
             </table>
-        ):
-        (
-            <div></div>
+        ) : (
+            <div className="no-tickets">No tickets available</div>
         )
-    
-    
-  );
+    );
 }
