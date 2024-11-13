@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addTicket } from '../Redux/ticketsSlice';
+import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {addTicket} from '../Redux/ticketsSlice';
 import {useNavigate} from "react-router-dom";
 
 export default function Ticket() {
@@ -16,6 +16,8 @@ export default function Ticket() {
   const hour = currentDate.getHours();
   const minute = currentDate.getMinutes();
 
+  const navigate = useNavigate();
+
   function createTicket(event) {
     event.preventDefault();
     const newTicket = {
@@ -30,6 +32,7 @@ export default function Ticket() {
 
     if (inpName && inpDistance > 0 && inpFinalLocation) {
       dispatch(addTicket(newTicket));
+      navigate("/tasks");
       reset();
     }
   }

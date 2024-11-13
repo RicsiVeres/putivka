@@ -45,6 +45,7 @@ form {
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  text-decoration: none;
 }
 
 .submitbtn:hover {

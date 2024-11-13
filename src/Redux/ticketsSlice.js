@@ -1,5 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
-
+import {createSlice} from '@reduxjs/toolkit';
 
 export const ticketsSlice = createSlice({
     name: 'tickets',
@@ -10,11 +9,12 @@ export const ticketsSlice = createSlice({
         addTicket: (state, action) => {
             state.items.push(action.payload);
         },
+        deleteTicket: (state, action) => {
+            state.items = state.items.filter((_, index) => index !== action.payload);
+        },
     },
 });
 
-
-export const { addTicket } = ticketsSlice.actions;
-
+export const {addTicket, deleteTicket} = ticketsSlice.actions;
 
 export default ticketsSlice.reducer;
